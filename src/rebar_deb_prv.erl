@@ -33,4 +33,4 @@ format_error(Reason) ->
     io_lib:format("~p", [Reason]).
 
 display_info(App) ->
-    rebar_api:info("Application ~p~n", [rebar_app_info:name(App)]).
+    rebar_api:info("Application ~s Version ~s ~n", [rebar_app_info:name(App), rebar_app_info:original_vsn(App)]).
