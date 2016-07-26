@@ -33,4 +33,8 @@ format_error(Reason) ->
     io_lib:format("~p", [Reason]).
 
 display_info(App) ->
-    rebar_api:info("Application ~s Version ~s ~n", [rebar_app_info:name(App), rebar_app_info:original_vsn(App)]).
+    rebar_api:info("Application ~s Version ~s ~n", [rebar_app_info:name(App), rebar_app_info:original_vsn(App)]),
+    {RelName, RelVsn} = rlx_state:default_configured_release(State),
+    OutputDir = rlx_state:output_dir(State),
+    rebar_api:info("Release ~s Version ~s ~n", [RelName, RelVsn]),
+    rebar_api:info("Release dir ~s ~n", [OutputDir]).
