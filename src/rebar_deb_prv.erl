@@ -4,6 +4,7 @@
 
 -define(PROVIDER, 'deb').
 -define(DEPS, [release]).
+-define(DEFAULT_RELEASE_DIR, "rel").
 
 %% ===================================================================
 %% Public API
@@ -34,10 +35,8 @@ format_error(Reason) ->
     io_lib:format("~p", [Reason]).
 
 display_info(App) ->
-    rebar_api:info("Application ~s Version ~s ~n", [rebar_app_info:name(App), rebar_app_info:original_vsn(App)]).
-
-display_release_info(State) ->
-    {RelName, RelVsn} = rlx_state:default_configured_release(State),
-    OutputDir = rlx_state:output_dir(State),
-    rebar_api:info("Release ~s Version ~s ~n", [RelName, RelVsn]),
-    rebar_api:info("Release dir ~s ~n", [OutputDir]).
+    AppName = rebar_app_info:name(App),
+    AppVsn = rebar_app_info:original_vsn(App),
+    OutputDir = filename:join(rebar_dir:base_dir(State), ?DEFAULT_RELEASE_DIR),
+    rebar_api:info("Application ~s Version ~s ~n", [AppName, AppVsn]),
+    rebar_api:info("Release OutputDir ~s ~n", [OutputDir]).
