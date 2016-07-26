@@ -2,8 +2,8 @@
 
 -export([init/1, do/1, format_error/1]).
 
--define(PROVIDER, 'rebar_deb').
--define(DEPS, [app_discovery]).
+-define(PROVIDER, 'deb').
+-define(DEPS, [release]).
 
 %% ===================================================================
 %% Public API
