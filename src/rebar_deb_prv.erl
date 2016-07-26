@@ -28,7 +28,7 @@ init(State) ->
 do(State) ->
     lists:foreach(fun display_info/1, rebar_state:project_apps(State)),
     OutputDir = filename:join(rebar_dir:base_dir(State), ?DEFAULT_RELEASE_DIR),
-    rebar_api:info("Release OutputDir ~s ~n", [OutputDir]).
+    rebar_api:info("Release OutputDir ~s ~n", [OutputDir]),
     {ok, State}.
 
 -spec format_error(any()) ->  iolist().
