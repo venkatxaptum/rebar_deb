@@ -25,10 +25,12 @@ init(State) ->
 
 -spec do(rebar_state:t()) -> {ok, rebar_state:t()} | {error, string()}.
 do(State) ->
-    DebConf = rebar_state:get(State, debian, []),
-    rebar_api:console("Configuration is ~p~n", [DebConf]),
+    lists:foreach(fun display_info/1, rebar_state:project_apps(State)),
     {ok, State}.
 
 -spec format_error(any()) ->  iolist().
 format_error(Reason) ->
     io_lib:format("~p", [Reason]).
+
+display_info(App) ->
+    rebar_api:info("Application ~p~n", [rebar_app_info(App)]).
