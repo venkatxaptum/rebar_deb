@@ -3,7 +3,7 @@
 -export([init/1, do/1, format_error/1]).
 
 -define(PROVIDER, 'deb').
--define(DEPS, [release]).
+-define(DEPS, [compile]).
 
 %% ===================================================================
 %% Public API
