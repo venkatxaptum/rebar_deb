@@ -26,6 +26,7 @@ init(State) ->
 -spec do(rebar_state:t()) -> {ok, rebar_state:t()} | {error, string()}.
 do(State) ->
     lists:foreach(fun display_info/1, rebar_state:project_apps(State)),
+    display_release_info(State),
     {ok, State}.
 
 -spec format_error(any()) ->  iolist().
@@ -33,7 +34,9 @@ format_error(Reason) ->
     io_lib:format("~p", [Reason]).
 
 display_info(App) ->
-    rebar_api:info("Application ~s Version ~s ~n", [rebar_app_info:name(App), rebar_app_info:original_vsn(App)]),
+    rebar_api:info("Application ~s Version ~s ~n", [rebar_app_info:name(App), rebar_app_info:original_vsn(App)]).
+
+display_release_info(State) ->
     {RelName, RelVsn} = rlx_state:default_configured_release(State),
     OutputDir = rlx_state:output_dir(State),
     rebar_api:info("Release ~s Version ~s ~n", [RelName, RelVsn]),
