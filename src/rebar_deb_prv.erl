@@ -3,7 +3,7 @@
 -export([init/1, do/1, format_error/1]).
 
 -define(PROVIDER, 'deb').
--define(DEPS, [compile]).
+-define(DEPS, [release]).
 
 %% ===================================================================
 %% Public API
@@ -25,6 +25,8 @@ init(State) ->
 
 -spec do(rebar_state:t()) -> {ok, rebar_state:t()} | {error, string()}.
 do(State) ->
+    DebConf = rebar_state:get(State, debian, []),
+    rebar_api:console("Configuration is ~p~n", [DebConf]),
     {ok, State}.
 
 -spec format_error(any()) ->  iolist().
