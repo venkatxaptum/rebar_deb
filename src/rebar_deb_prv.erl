@@ -27,7 +27,6 @@ init(State) ->
 -spec do(rebar_state:t()) -> {ok, rebar_state:t()} | {error, string()}.
 do(State) ->
     lists:foreach(fun display_info/1, rebar_state:project_apps(State)),
-    display_release_info(State),
     {ok, State}.
 
 -spec format_error(any()) ->  iolist().
